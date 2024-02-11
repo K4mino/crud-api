@@ -1,0 +1,14 @@
+[
+    {
+        "id": "a797ca65-6cde-47f9-968f-4eeed1555d6c",
+        "username": "John",
+        "age": 20,
+        "hobbies": ["Cooking", "Singing"]
+    },
+    {
+        "id": "258bf3be-be10-42c3-90e0-ad271a3dd606",
+        "username": "Kevin",
+        "age": 24,
+        "hobbies": ["Sport", "Singing"]
+    }
+]
