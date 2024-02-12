@@ -1,9 +1,10 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import users  from '../db.json';
 import { bodyParser } from '../utils/bodyParser';
-import { User } from '../types';
+import { User,CustomIncomingMessage } from '../types';
 import crypto from 'crypto';
 import writeDataToFile from '../utils/writeToFile';
+
+
 const isValid = (data: any): data is User => {
     return (
         typeof data.username === 'string' &&
@@ -12,7 +13,7 @@ const isValid = (data: any): data is User => {
         data.hobbies.every((hobby: any) => typeof hobby === 'string')
     );
 };
-export const createUser = async(req: IncomingMessage,res: ServerResponse) => {
+export const createUser = async(req: CustomIncomingMessage,res: ServerResponse) => {
    try {
     let body:unknown = await bodyParser(req);
     
@@ -23,7 +24,7 @@ export const createUser = async(req: IncomingMessage,res: ServerResponse) => {
     if(isValid(body)){
         res.statusCode = 201;
         res.setHeader('Content-Type', 'application/json');
-        users.push(userData);
+        req.users?.push(userData);
         await writeDataToFile(userData);
         res.end('User created');
     } else{

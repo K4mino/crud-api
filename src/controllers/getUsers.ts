@@ -1,8 +1,9 @@
-import users  from '../db.json';
-import {IncomingMessage, ServerResponse} from 'http'
-export const getUsers = (req: IncomingMessage,res: ServerResponse) => {
+import {ServerResponse} from 'http'
+import { CustomIncomingMessage } from '../types';
+
+export const getUsers = (req: CustomIncomingMessage,res: ServerResponse) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
-    res.write(JSON.stringify(users));
+    res.write(JSON.stringify(req.users));
     res.end();
 }
